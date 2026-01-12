@@ -1,0 +1,7 @@
+{
+  "name": "UmrahSmart Pro",
+  "description": "Comprehensive Umrah Travel Management System with pilgrim tracking, payment management, and AI-driven reporting.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
