@@ -13,6 +13,9 @@ export interface User {
   avatar?: string;
   status: 'ACTIVE' | 'INACTIVE';
   lastLogin?: string;
+  phone?: string;
+  city?: string;
+  address?: string;
 }
 
 export interface Airline {

@@ -9,21 +9,36 @@ import {
   Lock, 
   Clock, 
   ArrowLeft,
-  Loader2
+  Loader2,
+  Phone,
+  MapPin,
+  Home
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Profile: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '',
+    phone: '',
+    city: '',
+    address: ''
+  });
   const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('umrah_current_user') || '{}');
     setCurrentUser(user);
-    setFormData({ name: user.name || '', email: user.email || '' });
+    setFormData({ 
+      name: user.name || '', 
+      email: user.email || '',
+      phone: user.phone || '',
+      city: user.city || '',
+      address: user.address || ''
+    });
   }, []);
 
   const handleSave = () => {
@@ -158,6 +173,51 @@ const Profile: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       className={`w-full bg-slate-50 border border-slate-200 rounded-2xl pl-12 pr-4 py-3 text-sm outline-none transition-all font-medium ${!isEditing ? 'opacity-70 cursor-not-allowed' : 'focus:ring-2 focus:ring-emerald-500'}`}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Nomor WhatsApp</label>
+                  <div className="relative">
+                    <Phone size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
+                    <input 
+                      disabled={!isEditing}
+                      type="text"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      placeholder="08123456789"
+                      className={`w-full bg-slate-50 border border-slate-200 rounded-2xl pl-12 pr-4 py-3 text-sm outline-none transition-all font-medium ${!isEditing ? 'opacity-70 cursor-not-allowed' : 'focus:ring-2 focus:ring-emerald-500'}`}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Kota</label>
+                  <div className="relative">
+                    <MapPin size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
+                    <input 
+                      disabled={!isEditing}
+                      type="text"
+                      value={formData.city}
+                      onChange={(e) => setFormData({...formData, city: e.target.value})}
+                      placeholder="Jakarta Selatan"
+                      className={`w-full bg-slate-50 border border-slate-200 rounded-2xl pl-12 pr-4 py-3 text-sm outline-none transition-all font-medium ${!isEditing ? 'opacity-70 cursor-not-allowed' : 'focus:ring-2 focus:ring-emerald-500'}`}
+                    />
+                  </div>
+                </div>
+
+                <div className="md:col-span-2 space-y-2">
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Alamat Lengkap</label>
+                  <div className="relative">
+                    <Home size={16} className="absolute left-4 top-4 text-slate-300" />
+                    <textarea 
+                      disabled={!isEditing}
+                      rows={3}
+                      value={formData.address}
+                      onChange={(e) => setFormData({...formData, address: e.target.value})}
+                      placeholder="Jl. Raya Utama No. 123..."
+                      className={`w-full bg-slate-50 border border-slate-200 rounded-2xl pl-12 pr-4 py-3 text-sm outline-none transition-all font-medium resize-none ${!isEditing ? 'opacity-70 cursor-not-allowed' : 'focus:ring-2 focus:ring-emerald-500'}`}
                     />
                   </div>
                 </div>

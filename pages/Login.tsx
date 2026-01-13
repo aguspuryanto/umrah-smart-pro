@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ShieldCheck, Mail, Lock, Loader2, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Mail, Lock, Loader2, ArrowRight, Info } from 'lucide-react';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -38,8 +38,13 @@ const Login: React.FC = () => {
     }, 1000);
   };
 
+  const useDemoAccount = () => {
+    setEmail('budi@umrahsmart.pro');
+    setPassword('admin');
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-[440px] animate-in fade-in zoom-in-95 duration-500">
         <div className="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden">
           <div className="p-8 pb-4 text-center">
@@ -112,6 +117,38 @@ const Login: React.FC = () => {
             </p>
           </div>
         </div>
+
+        {/* Demo Access Info Box */}
+        <div className="mt-8 bg-blue-50/50 border border-blue-100 rounded-3xl p-6 animate-in slide-in-from-bottom-4 duration-700 delay-300">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+              <Info size={20} />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-sm font-bold text-blue-900 mb-1">Demo Access Credentials</h4>
+              <p className="text-xs text-blue-700/80 leading-relaxed mb-4">
+                Gunakan akun demo berikut untuk mencoba seluruh fitur sistem management tanpa harus mendaftar.
+              </p>
+              <div className="bg-white/80 rounded-2xl p-4 border border-blue-100/50 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Email</span>
+                  <span className="text-xs font-mono font-bold text-slate-700">budi@umrahsmart.pro</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Password</span>
+                  <span className="text-xs font-mono font-bold text-slate-700">admin</span>
+                </div>
+              </div>
+              <button 
+                onClick={useDemoAccount}
+                className="mt-4 w-full py-2.5 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200"
+              >
+                Gunakan Akun Demo
+              </button>
+            </div>
+          </div>
+        </div>
+
         <p className="text-center mt-8 text-xs text-slate-400 font-medium tracking-wide">
           &copy; 2024 UmrahSmart Pro. Seluruh Hak Cipta Dilindungi.
         </p>
