@@ -136,7 +136,8 @@ const Payments: React.FC = () => {
           <div key={i} className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm group hover:border-emerald-500 transition-all">
             <div className="flex items-center justify-between mb-4">
               <div className={`w-12 h-12 rounded-2xl bg-${s.color}-50 flex items-center justify-center text-${s.color}-600 group-hover:scale-110 transition-transform`}>
-                {React.cloneElement(s.icon as React.ReactElement, { size: 24 })}
+                {/* Fix: Cast icon to React.ReactElement<any> to resolve the 'size' prop type error in cloneElement */}
+                {React.cloneElement(s.icon as React.ReactElement<any>, { size: 24 })}
               </div>
               <span className={`text-[10px] font-bold px-2 py-1 rounded-full bg-${s.color}-50 text-${s.color}-600`}>
                 {s.trend}
@@ -253,7 +254,7 @@ const Payments: React.FC = () => {
       {/* Delete Confirmation Overlay */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-200 border border-slate-100">
+          <div className="bg-white rounded-[2.5rem] p-8 max-sm w-full shadow-2xl animate-in zoom-in-95 duration-200 border border-slate-100">
             <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 mx-auto mb-6">
               <AlertTriangle size={32} />
             </div>

@@ -67,7 +67,8 @@ const Dashboard: React.FC = () => {
           <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
             <div className="flex items-center justify-between mb-4">
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-${item.color}-600 bg-${item.color}-50 group-hover:scale-110 transition-transform`}>
-                {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
+                {/* Fix: Cast icon to React.ReactElement<any> to resolve the 'size' prop type error in cloneElement */}
+                {React.cloneElement(item.icon as React.ReactElement<any>, { size: 24 })}
               </div>
               <div className={`flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full ${
                 item.trend === 'up' ? 'bg-emerald-100 text-emerald-700' : 

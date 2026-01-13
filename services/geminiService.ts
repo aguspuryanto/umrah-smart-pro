@@ -1,7 +1,8 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Fix: Initialize GoogleGenAI with the API key from environment variables directly.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateSmartReport = async (data: any) => {
   try {
